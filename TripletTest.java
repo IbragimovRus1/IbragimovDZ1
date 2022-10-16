@@ -1,19 +1,15 @@
-package IbragimovDZ1;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Deque;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MyTrichyCollectionTest {
-    private Deque<String> myList = new MyTrichyCollection<>();
+class TripletDequeue {
+    private Deque<String> myList = (Deque<String>) new TripletDequeue();
     private long ts = System.currentTimeMillis();
 
     @Test
     void addFirstTest1() {
-        Deque<String> MyList = new MyTrichyCollection<>();
+        Deque<String> MyList = new TripletDequeue<>();
         Assertions.assertEquals(0, MyList.size());
         MyList.addFirst("Element1");
         MyList.addFirst("Element2");
@@ -38,7 +34,7 @@ class MyTrichyCollectionTest {
 
     @Test
     void addLastTest1(){
-        Deque<String> myList = new MyTrichyCollection<>();
+        Deque<String> myList = new Triplet<String>();
         Assertions.assertEquals(0, myList.size());
         myList.addLast("Element1");
         myList.addLast("Element2");
@@ -63,12 +59,13 @@ class MyTrichyCollectionTest {
 //        myList.addLast("Element21");
 //        myList.addLast("Element22");
 
+        System.out.println(myList);
         Assertions.assertEquals(13, myList.size());
     }
 
     @Test
     void offerFirstTest1(){
-        Deque<String> myList = new MyTrichyCollection<>();
+        Deque<String> myList = new Triplet<String>();
         Assertions.assertEquals(0, myList.size());
 
         myList.offerFirst("ElementLast1");

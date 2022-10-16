@@ -1,4 +1,4 @@
-package IbragimovDZ2;
+package IbragimovDZ1;
 
 import java.util.Collection;
 import java.util.Deque;
@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MyTrichyCollection <T> implements Deque<T> {
+
 
     private Object[] data;                                                                //Исходный массив
 
@@ -56,14 +57,14 @@ public class MyTrichyCollection <T> implements Deque<T> {
 
 //        myTrippletPrev[index] = data[index];
 
-            Object [] newData = new Object [data.length+cons];
-            for (int i = 0; i < data.length; i++){
-                newData[i] = data[i];
-            }
-
-            data = newData;
-            myTrippletPrev = newData;
-            capacity = data.length;
+//            Object [] newData = new Object [data.length+cons];
+//            for (int i = 0; i < data.length; i++){
+//                newData[i] = data[i];
+//            }
+//
+//            data = newData;
+//            myTrippletPrev = newData;
+//            capacity = data.length;
 
 //                System.arraycopy(data, cons, myTrippletPrev, 0, 5);
 
@@ -76,20 +77,14 @@ public class MyTrichyCollection <T> implements Deque<T> {
         for(int i = 5; i < data.length / 2; i++)
         {
             temp = (String) myTrippletPrev[i];
-            myTrippletPrev[i] = myTrippletPrev[myTrippletPrev.length - i - 1];
-            myTrippletPrev[myTrippletPrev.length - i - 1] = temp;
+            myTrippletPrev[i] = myTrippletPrev[data.length - i - 1];
+            myTrippletPrev[data.length - i - 1] = temp;
         }
 
 
         data = myTrippletPrev;
 
 
-
-
-//        System.out.println();
-//        System.out.println("Увеличение коллекции на " + cons + " элеметов");
-//
-//        System.out.println("Величина коллекции = " + data.length);
 
     }
 
@@ -129,7 +124,34 @@ public class MyTrichyCollection <T> implements Deque<T> {
 
     @Override
     public boolean offerFirst(T t) {
+
+        Object [] offerFirstData = new Object [data.length+1];
+
+        System.arraycopy(data, 0, offerFirstData, 0, data.length);
+        offerFirstData[data.length-1] = t;
+
+        data = offerFirstData;
+
+        System.out.print(data[index] + " ");
+
+        if (index >= cons) {
+
+            JetofferFirst();
+
+        }
         return false;
+    }
+
+    private void JetofferFirst(){
+
+        Object [] offerFirstData1 = new Object [data.length+cons];
+
+        for (int i = 0; i < data.length; i++){
+            offerFirstData1[i] = data[i];
+        }
+
+        data = offerFirstData1;
+        capacity = data.length;
     }
 
     @Override
@@ -269,7 +291,7 @@ public class MyTrichyCollection <T> implements Deque<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return index == 0;
     }
 
     @Override
@@ -292,4 +314,3 @@ public class MyTrichyCollection <T> implements Deque<T> {
         return null;
     }
 }
-
